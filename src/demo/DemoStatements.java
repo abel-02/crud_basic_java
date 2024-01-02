@@ -4,12 +4,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import model.ConexionDB;
 import model.Persona;
 
 public class DemoStatements {
+	
 	private static String _sql = "jdbc:sqlite:prueba1.db";
+	
 	public boolean insertarPersona(Persona persona) {
 		int rowCount = 0;
 		try {
@@ -32,10 +35,24 @@ public class DemoStatements {
 				persona = new Persona(rst.getInt(1), rst.getString(2), rst.getInt(3), rst.getString(4));
 			}
 		} catch (SQLException e) {
-			System.out.println("Error en la búsqueda");
+			System.out.println("Error en la búsqueda" + e.getMessage());
 		}
 		return persona;
-	}	
+	}
+	public ArrayList<Persona> obtenerTodos(){
+		String sql = "SELECT * FROM usuarios";
+		ArrayList<Persona> personasObtenidas = new ArrayList<>();
+		try {
+			Statement stm = ConexionDB.getInstance(_sql).getConnection().createStatement();
+			ResultSet rst = stm.executeQuery(sql);
+			while(rst.next()) {
+				personasObtenidas.add(new Persona(rst.getInt(1), rst.getString(2), rst.getInt(3), rst.getString(4)));
+			}
+		} catch (SQLException e) {
+			System.out.println("Error en la consulta" + e.getMessage());
+		}
+		return personasObtenidas;
+	}
 }
 
 

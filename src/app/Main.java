@@ -21,7 +21,10 @@ public class Main {
 //			System.out.println("Se inserto correctamente");
 //		else
 //			System.out.println("No se insertó");
-	System.out.println(demo.buscarPersonaPorID(1).getNombre());
+		for(Persona p: demo.obtenerTodos()) {
+			System.out.println(p.getNombre());
+		}
+//	System.out.println(demo.buscarPersonaPorID(1).getNombre());
 	}
 
 }
