@@ -12,9 +12,9 @@ public class Controller
 		personas = new HashMap<>();
 	}
 	
-	public <T> void registrarPersona(String nombre, Integer edad, T dato)
+	public <T> void registrarPersona(int id, String nombre, Integer edad, T dato)
 	{
-		Persona persona = new Persona(nombre,edad,dato);
+		Persona persona = new Persona(id,nombre,edad,dato);
 		personas.put(persona.getId(), persona);
 	}
 	public <T> void editarPersona(Integer id, T dato){
