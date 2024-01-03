@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import model.ConexionDB;
 import model.Persona;
+import repository.ConexionDB;
 
 public class DemoStatements {
 	
