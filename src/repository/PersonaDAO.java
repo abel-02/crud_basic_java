@@ -9,8 +9,13 @@ import model.Persona;
 
 public class PersonaDAO implements InterfazDAO{
 	
-	private  String _sql = "jdbc:sqlite:prueba1.db";
+	private  String _sql;
 	private int rowCount;
+	
+	public PersonaDAO() {
+		this._sql = "jdbc:sqlite:prueba1.db";
+		this.rowCount = 0;
+	}
 	
 	@Override
 	public boolean insertar(Object obj) throws SQLException {
