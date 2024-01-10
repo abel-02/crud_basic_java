@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,12 +23,15 @@ public class VentanaPersonas {
 	private JFrame frame;
 	private JTextField txtEdad;
 	private JTextField txtDato;
-	private JButton btnEditar;
+	private JTextField txtNombre;
 	private JButton btnEliminar;
 
 	private PersonaDAO personaDAO;
 	private JTable tablaPersonas;
 	private JButton btnCargar;
+	private JButton btnInsertar;
+	
+
 
 	  private void inicializarVentana() {
 	        EventQueue.invokeLater(new Runnable() {
@@ -61,7 +65,7 @@ public class VentanaPersonas {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JTextField txtNombre = new JTextField();
+		txtNombre = new JTextField();
 		txtNombre.setBounds(89, 24, 96, 19);
 		frame.getContentPane().add(txtNombre);
 		txtNombre.setColumns(10);
@@ -88,7 +92,7 @@ public class VentanaPersonas {
 		txtDato.setBounds(89, 123, 96, 19);
 		frame.getContentPane().add(txtDato);
 		
-		JButton btnInsertar = new JButton("Insertar");
+		btnInsertar = new JButton("Insertar");
 		btnInsertar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -97,12 +101,8 @@ public class VentanaPersonas {
 		btnInsertar.setBounds(10, 195, 85, 21);
 		frame.getContentPane().add(btnInsertar);
 		
-		btnEditar = new JButton("Editar");
-		btnEditar.setBounds(100, 195, 85, 21);
-		frame.getContentPane().add(btnEditar);
-		
 		btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(57, 226, 85, 21);
+		btnEliminar.setBounds(100, 195, 85, 21);
 		frame.getContentPane().add(btnEliminar);
 		
 		tablaPersonas = new JTable();
@@ -121,34 +121,26 @@ public class VentanaPersonas {
 	public JButton getBtnCargar() {
 		return this.btnCargar;
 	}
-	
-	
-	/*
-	 * OJO CON ESTE
-	 */
-//	 private void cargarDatos() throws SQLException 
-//	 {
-//	        List<Persona> listaPersonas = personaDAO.obtenerTodo();
-//	        String[] columnas = {"Id","Nombre", "Edad", "Dato"};
-//
-//	        DefaultTableModel model = new DefaultTableModel(columnas, 0);
-//	        for (Persona persona : listaPersonas) {
-//	            Object[] fila = {persona.getId(),persona.getNombre(),persona.getEdad(),persona.getDato()};
-//	            model.addRow(fila);
-//	        }
-//	        tablaPersonas.setModel(model);
-//	        tablaPersonas.repaint();
-//	        tablaPersonas.revalidate();
-//	    }
-	 /*
-	  * 
-	  */
-	 private void actualizarTabla() {
-		 
+	public JButton getBtnInsertar() {
+		return this.btnInsertar;
+	}
+	public void limpiarCampos() {
+		 this.txtNombre.setText("");
+		 this.txtEdad.setText("");
+		 this.txtDato.setText("");
 	 }
-
 	public JTable getTablaPersonas() {
-		// TODO Auto-generated method stub
 		return this.tablaPersonas;
 	}
+	public String getTxtNombre() {
+		return this.txtNombre.getText();
+	}
+	public int getTxtEdad() {
+		return Integer.parseInt(this.txtEdad.getText());
+	}
+	public String getTxtDato() {
+		return this.txtDato.getText();
+	}
+
+	
 }
