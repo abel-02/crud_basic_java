@@ -25,23 +25,32 @@ public class Controller extends MouseAdapter{
 	 public void mouseClicked(MouseEvent evento) 
 	 {
 		 if(evento.getSource() == this.vista.getBtnCargar()) {
-		 	 modelo.cargarDatos();
-		 	 this.vista.getTablaPersonas().setModel(modelo);
-		 	 this.vista.getTablaPersonas().updateUI();
+		 	 eventoCargar();
 	 	}
 		 if(evento.getSource() == this.vista.getBtnInsertar()) {
-			 String nombre = this.vista.getTxtNombre();
-			 int edad = this.vista.getTxtEdad();
-			 String dato = this.vista.getTxtDato();
-			 Persona persona = new Persona(0,nombre,edad,dato);
-			 if(this.modelo.agregarPersona(persona)) {
-//				 JOptionPane.showMessageDialog(vista, "Se agrego correctamente","Aviso",JOptionPane.INFORMATION_MESSAGE);
-				 System.out.println("Se agrego correctamente");
-				 this.vista.getTablaPersonas().updateUI();
-			 }else {
-				 System.out.println("Error al insertar en la base de datos.");
-		 	}
-		 }	
+			 eventoInsertar();
+		 }
+//		 if(evento.getSource() == this.vista.getBtnEliminar()) {
+//		 	
+//		 	 this.vista.getTablaPersonas().updateUI();
+//	 	}
 		 this.vista.limpiarCampos();
 	 }
+	private void eventoCargar() {
+		 modelo.cargarDatos();
+	 	 this.vista.getTablaPersonas().setModel(modelo);
+	 	 this.vista.getTablaPersonas().updateUI();
+	}
+	private void eventoInsertar() {
+		String nombre = this.vista.getTxtNombre();
+		 int edad = this.vista.getTxtEdad();
+		 String dato = this.vista.getTxtDato();
+		 Persona<String> persona = new Persona<String>(modelo.getIdSiguiente(),nombre,edad,dato);
+		 
+		 if(this.modelo.agregarPersona(persona)) {
+			 System.out.println("Se agrego correctamente");
+			 this.vista.getTablaPersonas().updateUI();
+		 }else 
+			 System.out.println("Error al insertar en la base de datos.");
+	}
 }

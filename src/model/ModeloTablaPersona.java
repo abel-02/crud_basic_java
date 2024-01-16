@@ -142,5 +142,8 @@ public class ModeloTablaPersona implements TableModel
 		}
 		return false;
 	}
+	public int getIdSiguiente() {
+		return this.personas.size();
+	}
 	
 }

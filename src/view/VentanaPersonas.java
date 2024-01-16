@@ -30,8 +30,6 @@ public class VentanaPersonas {
 	private JTable tablaPersonas;
 	private JButton btnCargar;
 	private JButton btnInsertar;
-	
-
 
 	  private void inicializarVentana() {
 	        EventQueue.invokeLater(new Runnable() {
@@ -140,6 +138,9 @@ public class VentanaPersonas {
 	}
 	public String getTxtDato() {
 		return this.txtDato.getText();
+	}
+	public JButton getBtnEliminar() {		
+		return this.getBtnEliminar();
 	}
 
 	
